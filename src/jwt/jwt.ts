@@ -1,6 +1,5 @@
 import jwt from "jsonwebtoken";
-import { JWT_SECRET } from "../userModule/user.controller";
-
+import { JWT_SECRET } from "../module/userController";
 
 class jwtToken {
     public static async verifyJwt(request: any, response: any, next: CallableFunction) {

@@ -1,18 +1,17 @@
-import jwt from "jsonwebtoken";
+import user from "../schema/user";
 import bcrypt from "bcrypt";
-import user from "../../models/user";
+import jwt from "jsonwebtoken";
 export const JWT_SECRET = "axcdremsXvT";
 
 class authController {
-
-    // SignUp
+    //SignUp
     public static async signUpUser(request: any, response: any) {
         const { userName, password, email, lateFine, role } = request.body;
         try {
             // Check if the user already exists
-            const existingUser = await user.findOne({ email });
+            const existingUser = await user.findOne({ email: request.body.email});
             if (existingUser) {
-                return response.status(400).json({
+                return response.status().json({
                     message: "User already exists"
                 });
             }
@@ -74,4 +73,4 @@ class authController {
         }
     }
 }
-export default authController;
+export default authController
